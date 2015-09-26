@@ -14,8 +14,9 @@ exports.postAPI = function(data, success, failure) {
       port: '1988',
       path: '/screenshots/post/images',
       method: 'POST',
+      json: true,
       headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           'Content-Length': post_data.length
       },
       success: success,
