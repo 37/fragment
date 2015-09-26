@@ -6,7 +6,7 @@ var fs = require('fs');
 // AJAX Imagetest API post
 exports.postAPI = function(data, success, failure) {
   // Build the post string from an object
-  var post_data = querystring.stringify({data});
+  var post_data = querystring.stringify(data);
 
   // An object of options to indicate where to post to
   var post_options = {
