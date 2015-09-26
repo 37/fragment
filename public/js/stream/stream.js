@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect('http://localhost:80');
 
 socket.on('webstream', function(data){
   console.log('Received result from server: ' + data)
