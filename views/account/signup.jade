@@ -1,24 +1,31 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 Sign up
-  form.form-horizontal(id='signup-form', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='email') Email
-      .col-sm-7
-        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus)
-    .form-group
-      label.col-sm-3.control-label(for='password') Password
-      .col-sm-7
-        input.form-control(type='password', name='password', id='password', placeholder='Password')
-    .form-group
-      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
-      .col-sm-7
-        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password')
-    .form-group
-      .col-sm-offset-3.col-sm-7
-        button.btn.btn-success(type='submit')
-          i.fa.fa-user-plus
-          | Signup
+  .loginbox
+    .page-header
+      h3 Register
+    form.form-horizontal.login(id="signup-form", method='POST')
+      .row
+        h3 Sign up with Facebook
+        .row
+          a.btn-large.social-login(href='/auth/facebook')
+            i.fa.fa-facebook.pre
+            h3 Login
+        input(type='hidden', name='_csrf', value=_csrf)
+        h3 or
+        .row
+          .input-field.col.s12
+            label(for="email") Email
+            input(id="email", name="email", type="email", class="validate")
+        .row
+          .input-field.col.s12
+            label(for="password") Password
+            input(id="password", name="password", type="password", class="validate")
+        .row
+          .input-field.col.s12
+            label(for="confirmPassword") Confirm password
+            input(id="confirmPassword", name="confirmPassword", type="password", class="validate")
+        .row
+          .btn-large(type="submit") SIGN UP
+
+          a.btn.btn-link(href='/login') Login

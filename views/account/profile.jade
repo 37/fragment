@@ -1,45 +1,40 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 Profile Information
 
-  form.form-horizontal(action='/account/profile', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='email') Email
-      .col-sm-7
-        input.form-control(type='email', name='email', id='email', value='#{user.email}')
-    .form-group
-      label.col-sm-3.control-label(for='name') Name
-      .col-sm-7
-        input.form-control(type='text', name='name', id='name', value='#{user.profile.name}')
-    .form-group
-      label.col-sm-3.control-label(for='gender') Gender
-      .col-sm-4
-        label.radio.col-sm-4
-          input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
-          span Male
-        label.radio.col-sm-4
-          input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
-          span Female
-    .form-group
-      label.col-sm-3.control-label(for='location') Location
-      .col-sm-7
-        input.form-control(type='text', name='location', id='location', value='#{user.profile.location}')
-    .form-group
-      label.col-sm-3.control-label(for='website') Website
-      .col-sm-7
-        input.form-control(type='text', name='website', id='website', value='#{user.profile.website}')
-    .form-group
-      label.col-sm-3.control-label(for='gravatar') Gravatar
-      .col-sm-4
-        img(src="#{user.gravatar()}", class='profile', width='100', height='100')
-    .form-group
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn.btn-primary(type='submit')
-          i.fa.fa-pencilr
-          | Update Profile
+  .loginbox
+    .page-header
+      h3 Profile Information
+    form.form-horizontal.input(id="signup-form", method='POST')
+      .row
+        .row
+          .input-field.col.s12
+            label(for="email") Email
+            input(id="email", name="email", type="email", class="validate", value='#{user.email}')
+        .row
+          .input-field.col.s12
+            label(for="name") Full name
+            input(id="name", name="name", type="text", class="validate", value='#{user.profile.name}')
+        .row
+          .other-field.col.s12
+            label(for="gender") Gender
+            p
+              input(class="with-gap", name="gender", type="radio", value="Male", checked=user.profile.gender=='male')
+              label(for="gender") Male
+            p
+              input(class="with-gap", name="gender", type="radio", value="Female", checked=user.profile.gender=='female')
+              label(for="gender") Female
+        .row
+          .input-field.col.s12
+            label(for="location") Location
+            input(id="location", name="location", type="text", class="validate", value='#{user.profile.location}')
+        .row
+          .other-field.col.s12
+            label(for="location") Gravatar
+            img(src="#{user.gravatar()}", class='profile', width='100', height='100')
+        .row
+          .btn-large(type="submit") SIGN UP
+
 
   .page-header
     h3 Change Password

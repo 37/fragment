@@ -41,7 +41,31 @@ html.home .bodyLogo {
   height: 80px;
   padding: 10px 20px;
   box-sizing: border-box;
+  width: 100%;
+  -webkit-transition: width 0.5s; /* Safari */
+  transition: width 0.5s;
 }
+
+#facebook_submit {
+  padding: 0px;
+  height: 80px;
+  line-height: 80px;
+  float: right;
+  width: 0px;
+  overflow: hidden;
+  -webkit-transition: width 0.5s; /* Safari */
+  transition: width 0.5s;
+}
+
+.valid #facebook_search {
+  width: calc(100% - 100px);
+}
+
+.valid #facebook_submit {
+  display: block;
+  width: 100px;
+}
+
 
 html.home #facebook_search::-webkit-input-placeholder {
    color: rgb(243, 49, 49);
@@ -59,10 +83,26 @@ html.home #facebook_search:-ms-input-placeholder {
    color: rgb(243, 49, 49);
 }
 
+html.home #homeHeader {
+  display: block;
+}
+
+html.home #homeSearch {
+  display: block;
+}
+
+html.home #homeSelect {
+  display: none;
+}
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **    Global object styles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.progress {
+  height: 3px!important;
+}
 
 .page-header {
   padding: 0!important;
@@ -89,15 +129,98 @@ html.home #facebook_search:-ms-input-placeholder {
 **    Form styles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-form.login {
-  background-color: transparent;
+.loginbox {
+  width: 400px;
+  margin: 10px calc(50% - 200px);
 }
 
-form.login .social-login {
+form.input {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+form.input > .row .input-field{
+  margin: 10px 15px 0 15px;
+  background-color: white;
+  height: 60px;
+  width: calc(100% - 30px);
+  padding: 20px 10px 0px 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+form.input > .row .input-field{
+  margin: 10px 15px 0 15px;
+  background-color: white;
+  height: 60px;
+  width: calc(100% - 30px);
+  padding: 20px 10px 0px 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+form.input > .row .other-field{
+  color: white;
+}
+
+form.input > .row .other-field label{
+  color: white;
+}
+
+form.input > .row .other-field img  {
+  margin-left: 20px;
+}
+
+form.input h3 {
+  color: white;
+  text-align: center;
+}
+
+form.input .btn-large {
   float: left;
-  width: 100%;
+  margin: 0 15px;
+  width: calc(100% - 30px);
+  background-color: #fff;
 }
 
-form.login .login > .col.s4 {
+form.input .btn-link {
+  margin: 0 15px;
+  width: calc(100% - 30px);
+  floaT: left;
+  margin-top: 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+form.input .btn-link:hover {
+  background-color: white;
+}
+
+form.input label {
+  color: #333;
+}
+
+form.input label.active {
+  color: #fff;
+}
+
+form.input .social-login {
+  background-color: rgb(19, 114, 202);
+  color: white;
+  line-height: 54px;
+  text-align: center;
+}
+
+form.input .social-login i {
+  float: none;
+}
+
+form.input .social-login h3 {
+  display: none;
+}
+
+form.input .login > .col.s4 {
   width: 100%;
 }
