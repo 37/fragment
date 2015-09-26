@@ -8,13 +8,13 @@ html
     title #{title} - Fragment
     != css('main')
     != css('stream')
-
   body
     include ../partials/header
 
     .container
       include ../partials/flash
     .videostream
+      input(id="userId", type="hidden", value="#{user.facebook}")
       video(id="stream", autoplay, muted)
       canvas(id="overlay", style="width: 1000px; height: 1000px;")
 

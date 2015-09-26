@@ -23,7 +23,8 @@ Bitcore.Networks.defaultNetwork = secrets.bitcore.bitcoinNetwork == 'testnet' ? 
  */
 exports.getApi = function(req, res) {
   res.render('api/index', {
-    title: 'API Examples'
+    title: 'Scan API',
+    user: req.user
   });
 };
 
@@ -31,6 +32,7 @@ exports.getApi = function(req, res) {
  * GET /api/facebook
  * Facebook API example.
  */
+ 
 exports.getFacebook = function(req, res, next) {
   var token = _.find(req.user.tokens, { kind: 'facebook' });
   graph.setAccessToken(token.accessToken);

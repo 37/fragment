@@ -14,5 +14,8 @@
  */
 
 
+//= require stream/socket.io
+//= require stream/ccv
 //= require stream/adapter
 //= require stream/clientstream
+//= require stream/stream

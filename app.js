@@ -1,7 +1,10 @@
-/**
- * Module dependencies.
- */
+// Core server dependencies
 var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+// Other dependencies
 var cookieParser = require('cookie-parser');
 var compress = require('compression');
 var favicon = require('serve-favicon');
@@ -11,7 +14,6 @@ var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var lusca = require('lusca');
 var methodOverride = require('method-override');
-
 var _ = require('lodash');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('express-flash');
@@ -21,37 +23,29 @@ var passport = require('passport');
 var expressValidator = require('express-validator');
 var assets = require('connect-assets');
 
-/**
- * Controllers (route handlers).
- */
+// Variables
+var chunkCount = 0;
+
+// Controllers (route handlers).
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var imageTest = require('./controllers/imageApi');
 
-/**
- * API keys and Passport configuration.
- */
+// API keys and Passport configuration.
 var secrets = require('./config/secrets');
 var passportConf = require('./config/passport');
 
-/**
- * Create Express server.
- */
-var app = express();
 
-/**
- * Connect to MongoDB.
- */
+// Connect to MongoDB.
 mongoose.connect(secrets.db);
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.'.red);
   process.exit(1);
 });
 
-/**
- * Express configuration.
- */
+// Express configuration.
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -133,24 +127,45 @@ app.post('/api/bitgo', apiController.postBitGo);
 app.get('/api/bitcore', apiController.getBitcore);
 app.post('/api/bitcore', apiController.postBitcore);
 
-/**
- * OAuth authentication routes. (Sign in)
- */
+
+// OAuth authentication routes. (Sign in)
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
 
 
-/**
- * Error Handler.
- */
+// Error handler
 app.use(errorHandler());
 
-/**
- * Start Express server.
- */
-app.listen(app.get('port'), function() {
+// Start server
+server.listen(app.get('port'), function() {
   console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+});
+
+// Start websocket listener (for scan API page)
+io.on('connection', function (socket) {
+  console.log('a user connected');
+
+  socket.on('webstream', function (data) {
+    if (chunkCount > 9) {
+      console.log('chunk of 10 scan frames received from client.');
+      chunkCount = 0;
+    }
+
+    imageTest.postAPI(data, function(){
+      // Return result via below line
+      io.emit('webstream', 'success');
+    }, function(){
+      // Return result via below line
+      io.emit('webstream', 'fail');
+    });
+
+    chunkCount++;
+  });
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
 });
 module.exports = app;
