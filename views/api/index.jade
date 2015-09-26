@@ -1,0 +1,24 @@
+doctype html
+html
+  head.scan
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='csrf-token', content=_csrf)
+    title #{title} - Fragment
+    != css('main')
+    != css('stream')
+
+  body
+    include ../partials/header
+
+    .container
+      include ../partials/flash
+    .videostream
+      video(id="stream", autoplay, muted)
+      canvas(id="overlay", style="width: 1000px; height: 1000px;")
+
+    include ../partials/footer
+
+    != js('application')
+    != js('stream')

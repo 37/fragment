@@ -1,0 +1,103 @@
+html {
+   background: #E32828;
+   overflow: hidden;
+}
+
+html.home body {
+  background-color: transparent;
+  color: white;
+}
+
+html body {
+  background-color: transparent;
+  color: #333;
+}
+
+html body > .container {
+  margin-top: 10px;
+  padding: 0;
+}
+
+html.home body > .container {
+  background-color: transparent;
+}
+
+html.home .dynamicBackground {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+html.home .bodyLogo {
+  font-size: 200px;
+  display: none;
+}
+
+#facebook_search{
+  background-color: rgba(255,255,255,0.5);
+  color: #333;
+  font-size: 40px;
+  line-height: 60px;
+  height: 80px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+html.home #facebook_search::-webkit-input-placeholder {
+   color: rgb(243, 49, 49);
+}
+
+html.home #facebook_search:-moz-placeholder { /* Firefox 18- */
+   color: rgb(243, 49, 49);
+}
+
+html.home #facebook_search::-moz-placeholder {  /* Firefox 19+ */
+   color: rgb(243, 49, 49);
+}
+
+html.home #facebook_search:-ms-input-placeholder {
+   color: rgb(243, 49, 49);
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**    Global object styles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.page-header {
+  padding: 0!important;
+  margin: 0!important;
+  border-bottom: 0!important;
+  font-weight: 600;
+  color: white;
+}
+
+.form-horizontal {
+  background-color: white;
+  padding: 20px;
+}
+
+.form-control {
+  color: #333!important;
+}
+
+.pre {
+  float: left;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**    Form styles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+form.login {
+  background-color: transparent;
+}
+
+form.login .social-login {
+  float: left;
+  width: 100%;
+}
+
+form.login .login > .col.s4 {
+  width: 100%;
+}

@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .row.loginbox
+    .input-field.col.s4
+      br
+    .input-field.col.s4
+      .page-header
+        h3 Sign in
+      form.form-horizontal.login(method='POST')
+        .row
+          input(type='hidden', name='_csrf', value=_csrf)
+          .row
+            .input-field.col.s12
+              label(for="email") Email
+              input(id="email", name="email", type="email", class="validate", autofocus=true)
+          .row
+            .input-field.col.s12
+              label(for="password") Password
+              input(id="password", name="password", type="password", class="validate")
+          .row
+            .btn-large.social-login(type="submit") Login
+
+        .social
+          .row
+            .input-field.col.s12
+              a.btn-large.social-login(href='/auth/facebook')
+                i.fa.fa-facebook.pre
+                h3 Facebook login
+
+          a.btn.btn-link(href='/forgot') Forgot your password?
