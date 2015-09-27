@@ -23,9 +23,21 @@ $('body').on('click', '#facebook_submit', function(){
     $( "#homeSelect" ).slideDown( "medium", function() {
       $.get("https://graph.facebook.com/" + id[1] + "?access_token=478232152301788|2ZgNLqsJ_w3qD0LdMpsaweN8XFc", function(data, status){
         $('#homeSelect .indeterminate').addClass('determinate').removeClass('interdeterminate').css({
-          width : '100%'
+          width : '100%',
+          backgroundColor: '#fff'
         });
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+        $('#whois').append(
+          '<h1 class="item"> Name: ' + data.name + '</h1>' +
+          '<h1 class="item"> Last seen: searching..</h1>' +
+          '<div class="clear"></div>' +
+          '<div class="progress">' +
+            '<div class="indeterminate"></div>' +
+          '</div>'
+        );
+        $.get("/ulookup/" + data.id, function(data, status){
+
+          console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+        });
       });
 
       // $.get("/find?uid=" + rawUser, function(data, status){

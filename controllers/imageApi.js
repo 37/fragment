@@ -59,3 +59,17 @@ function logSighting() {
     return true;
   });
 }
+
+exports.lookup = function(req, res) {
+  console.log(req.params.id);
+  var uid = req.params.id;
+  ping.find({ facebook: uid }, function(err, existingUser) {
+    console.log('Error:' + err);
+    console.log('Data:' + existingUser);
+    if (existingUser) {
+      res.send('success', existingUser);
+    } else {
+      res.send('fail');
+    }
+  });
+}

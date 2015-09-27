@@ -95,11 +95,19 @@ html.home #homeSelect {
   display: none;
 }
 
+#whois .item {
+  float: left;
+  width: 100%;
+}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **    Global object styles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+.clear {
+  clear: both;
+  float: left;
+}
 .progress {
   height: 3px!important;
 }

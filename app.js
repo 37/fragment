@@ -83,6 +83,16 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use("/resources/images/100010108939289", express.static(__dirname + '/resources/images/100010108939289'));
+app.use("/resources/images/100010191557296", express.static(__dirname + '/resources/images/100010191557296'));
+app.use("/resources/images/100010178447644", express.static(__dirname + '/resources/images/100010178447644'));
+app.use("/resources/images/100010258245128", express.static(__dirname + '/resources/images/100010258245128'));
+app.use("/resources/images/100010199357175", express.static(__dirname + '/resources/images/100010199357175'));
+app.use("/resources/images/100010309964275", express.static(__dirname + '/resources/images/100010309964275'));
+app.use("/resources/images/100010361852458", express.static(__dirname + '/resources/images/100010361852458'));
+app.use("/resources/images/100010295175980", express.static(__dirname + '/resources/images/100010295175980'));
+app.use("/resources/images/100010227316389", express.static(__dirname + '/resources/images/100010227316389'));
 
 
 /**
@@ -109,6 +119,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 /**
  * API examples routes.
  */
+app.get('/ulookup/:id', imageTest.lookup);
 app.get('/api', apiController.getApi);
 app.get('/api/stripe', apiController.getStripe);
 app.post('/api/stripe', apiController.postStripe);
