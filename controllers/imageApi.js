@@ -30,7 +30,7 @@ exports.postAPI = function(data, success, failure) {
 
   // post the data
   post_req.write(post_data);
-  console.log(post_req)
+  console.log('sent request');
   post_req.end();
 
 }
