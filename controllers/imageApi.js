@@ -16,6 +16,10 @@ exports.postAPI = function(data, success, failure) {
       path: '/screenshots/post/images',
       method: 'POST',
       json: true,
+      headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': post_data.length
+      },
       success: success,
       fail: failure
   };
