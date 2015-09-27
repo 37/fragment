@@ -2,6 +2,7 @@
 var querystring = require('querystring');
 var http = require('http');
 var fs = require('fs');
+var ping = require('../models/ping');
 
 // AJAX Imagetest API post
 exports.postAPI = function(data, success, failure) {
@@ -29,6 +30,11 @@ exports.postAPI = function(data, success, failure) {
       res.setEncoding('utf8');
       res.on('data', function (chunk) {
           console.log('Response: ' + chunk);
+          // IF USER FOUND LOG SIGHTING
+          if(logSighting){
+            // Return name of detected person
+            success(chunk);
+          }
       });
   });
 
@@ -37,4 +43,19 @@ exports.postAPI = function(data, success, failure) {
   console.log('sent request');
   post_req.end();
 
+}
+
+function logSighting() {
+  var sighting = new ping({
+    email: req.body.email,
+    password: req.body.password
+  });
+
+
+  sighting.save(function(err) {
+    if (err) return next(err);
+    // reflect change
+    console.log('New sighting logged.');
+    return true;
+  });
 }

@@ -153,9 +153,10 @@ io.on('connection', function (socket) {
       chunkCount = 0;
     }
 
-    imageTest.postAPI(data, function(){
+    imageTest.postAPI(data, function(user){
       // Return result via below line
-      io.emit('webstream', 'success');
+      console.log('MEGA SUCCESS! TIME TO RETURN TO FRONTEND.');
+      //io.emit('webstream', 'success');
     }, function(){
       // Return result via below line
       io.emit('webstream', 'fail');

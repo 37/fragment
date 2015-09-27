@@ -2,7 +2,7 @@ function testInputValue() {
   var input = document.getElementById('facebook_search');
   var parent = $(input).closest('.input-field');
   var value = input.value;
-  if (value.indexOf("facebook.com/") > -1) {
+  if (value.indexOf("facebook.com/profile.php?id=") > -1) {
     $(parent).addClass('valid');
   } else {
     $(parent).removeClass('valid');
@@ -10,7 +10,10 @@ function testInputValue() {
 }
 
 $('body').on('click', '#facebook_submit', function(){
-  var rawUser = $('#facebook_submit').val();
+  var rawUser = $('#facebook_search').val();
+  console.log('rawdata: ' + rawUser);
+  var id = rawUser.split('profile.php?id=');
+  console.log('user id is: ' + id[1]);
   //var seletedId = example.substring(example.lastIndexOf("/") + 1));
   // Animate stuff nicely
 
@@ -18,9 +21,16 @@ $('body').on('click', '#facebook_submit', function(){
   $( "#homeHeader" ).slideUp( "medium", function() {
     // Animation complete.
     $( "#homeSelect" ).slideDown( "medium", function() {
-      $.get("/find?uid=" + rawUser, function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
+      $.get("https://graph.facebook.com/" + id[1] + "?access_token=478232152301788|2ZgNLqsJ_w3qD0LdMpsaweN8XFc", function(data, status){
+        $('#homeSelect .indeterminate').addClass('determinate').removeClass('interdeterminate').css({
+          width : '100%'
+        });
+        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       });
+
+      // $.get("/find?uid=" + rawUser, function(data, status){
+      //   alert("Data: " + data + "\nStatus: " + status);
+      // });
     });
   });
 
