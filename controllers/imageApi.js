@@ -6,7 +6,8 @@ var fs = require('fs');
 // AJAX Imagetest API post
 exports.postAPI = function(data, success, failure) {
   // Build the post string from an object
-  var post_data = querystring.stringify(data);
+
+  var post_data = (data);
 
   // An object of options to indicate where to post to
   var post_options = {
@@ -15,10 +16,6 @@ exports.postAPI = function(data, success, failure) {
       path: '/screenshots/post/images',
       method: 'POST',
       json: true,
-      headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': post_data.length
-      },
       success: success,
       fail: failure
   };
@@ -33,6 +30,7 @@ exports.postAPI = function(data, success, failure) {
 
   // post the data
   post_req.write(post_data);
+  console.log(post_req)
   post_req.end();
 
 }
