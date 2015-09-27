@@ -100,9 +100,25 @@ html.home #homeSelect {
   width: 100%;
 }
 
+html.home #results h1   {
+  line-height: 60px;
+}
+
+html.home #results .search {
+  font-size:20px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **    Global object styles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.navbar-default{
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.55);
+  -moz-box-shadow:    0px 5px 5px 0px rgba(50, 50, 50, 0.55);
+  box-shadow:         0px 5px 5px 0px rgba(50, 50, 50, 0.55);
+}
 
 .clear {
   clear: both;

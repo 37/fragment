@@ -22,20 +22,36 @@ $('body').on('click', '#facebook_submit', function(){
     // Animation complete.
     $( "#homeSelect" ).slideDown( "medium", function() {
       $.get("https://graph.facebook.com/" + id[1] + "?access_token=478232152301788|2ZgNLqsJ_w3qD0LdMpsaweN8XFc", function(data, status){
+        var name = data.name;
         $('#homeSelect .indeterminate').addClass('determinate').removeClass('interdeterminate').css({
           width : '100%',
           backgroundColor: '#fff'
         });
         $('#whois').append(
           '<h1 class="item"> Name: ' + data.name + '</h1>' +
-          '<h1 class="item"> Last seen: searching..</h1>' +
+          '<h1 id="seen" class="item"> Last seen: searching..</h1>' +
           '<div class="clear"></div>' +
           '<div class="progress">' +
             '<div class="indeterminate"></div>' +
           '</div>'
         );
         $.get("/ulookup/" + data.id, function(data, status){
-
+          var notification = '';
+          if (data.length < 1) {
+            notification = name + ' has not yet been detected by the fragment system. Do you want to be notified when our system detects them?';
+          } else {
+            notification = 'Pulling records...'
+          }
+          $('#whois .indeterminate').addClass('determinate').removeClass('interdeterminate').css({
+            width : '100%',
+            backgroundColor: '#fff'
+          });
+          $('#whois #seen').text('');
+          $('#results').append(
+            '<h1 class="item">' + notification + '</h1>' +
+            '<div class="clear"></div>' +
+            '<a class="waves-effect waves-light btn-large search"><i class="material-icons left">Search</i>Notify me!</a>'
+          );
           console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
         });
       });
